@@ -60,7 +60,6 @@ public class Main {
         //é adicionado R$ 10.000,00 reais na carteira de neymar
         neymar.getCarteira().adicionarSaldo(10000.00);
 
-
         //simulacao de uso do sistema
 
         //neymar transfere R$ 5.000,00 reais para gerson
@@ -72,5 +71,16 @@ public class Main {
         //gerson consulta a transacao que acabou de fazer
         gerson.getCarteira().consultarTransacao(0);
 
+        //manoel tenta consultar uma transferencia na qual ele nao esta envolvido (recebe msg de erro)
+        manoel.getCarteira().consultarTransferencia(0);
+
+        //gerson saca R$ 900,00
+        gerson.getCarteira().sacarSaldo(900,"Banco XYZ");
+
+        //gerson transfere R$ 1000,00 para manoel
+        gerson.getCarteira().transferirSaldo(manoel, 1000.00);
+
+        //gerson vende etg
+        gerson.getCarteira().venderMoeda(eth, 0.5);
     }
 }

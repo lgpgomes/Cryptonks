@@ -26,17 +26,18 @@ public class Carteira {
     }
 
     public void sacarSaldo (double valor, String contaBancaria) {
+        System.out.printf("\n[ - ] %s está realizando saque...\n", this.usuario.getNome());
         if (valor <= this.saldoEmReal) {
             this.saldoEmReal -= valor;
-            System.out.printf("O valor de R$ %.2f foi enviado para a sua conta %s \n", saldoEmReal, contaBancaria);
+            System.out.printf("O valor de R$ %.2f foi enviado a conta %s \n", valor, contaBancaria);
         }
         else {
-            System.out.printf("%s, você não tem saldo suficiente para realizar este saque. \n", usuario.getNome());
+            System.out.printf("%s, saldo suficiente para realizar este saque. \n", usuario.getNome());
         }
     }
 
     public void comprarMoeda(Moeda moeda, double quantidadeMoeda) {
-        System.out.print("\nRealizando compra de moeda...\n");
+        System.out.printf("\n[ - ] %s está realizando compra de moeda...\n", this.usuario.getNome());
         double valorTaxa = (quantidadeMoeda*moeda.cotacaoParaReal) * taxaTransacao;
         double valorLiquido = (quantidadeMoeda*moeda.cotacaoParaReal) ;
 
@@ -66,7 +67,7 @@ public class Carteira {
     }
 
     public void venderMoeda(Moeda moeda, double quantidadeMoeda) {
-        System.out.print("\nRealizando venda de moeda...\n");
+        System.out.printf("\n[ - ] %s está realizando venda de moeda...\n", this.usuario.getNome());
 
         double valorTaxa = (quantidadeMoeda * moeda.cotacaoParaReal) * taxaTransacao;
         double valorLiquido = (quantidadeMoeda * moeda.cotacaoParaReal) - valorTaxa;
@@ -97,7 +98,7 @@ public class Carteira {
     }
 
     public void transferirSaldo(Usuario usuarioDestinatario, double valorTransferencia) {
-        System.out.print("\nRealizando transferência...\n");
+        System.out.printf("\n[ - ] %s está realizando transferencia de saldo...\n", this.usuario.getNome());
         Transferencia novaTransferencia = new Transferencia(
                 this,
                 usuarioDestinatario.getCarteira(),
@@ -113,6 +114,7 @@ public class Carteira {
     }
 
     public void consultarTransacao (int id) {
+        System.out.printf("\n[ - ] %s está realizando consulta transacao...\n", this.usuario.getNome());
         for (Investimento investimento : this.investimentos) {
             for (Transacao transacao : investimento.getTransacoes()) {
                 if (transacao.getId() == id) {
@@ -121,17 +123,18 @@ public class Carteira {
                 }
             }
         }
-        System.out.printf("\nNão há transação com o id %d para %s.\n", id, this.getNomeUsuario());
+        System.out.printf("Não há transação com o id %d para %s.\n", id, this.getNomeUsuario());
     }
 
     public void consultarTransferencia (int id) {
+        System.out.printf("\n[ - ] %s está realizando consulta transferencia...\n", this.usuario.getNome());
         for (Transferencia transferencia : this.transferencias) {
             if (transferencia.getId() == id) {
                 transferencia.exibir();
                 return;
             }
         }
-        System.out.printf("\nNão há transferência com o id %d para %s.\n", id, this.getNomeUsuario());
+        System.out.printf("Não há transferência com o id %d para %s.\n", id, this.getNomeUsuario());
     }
 
     private Investimento consultarInvestimentos (Moeda moeda) {

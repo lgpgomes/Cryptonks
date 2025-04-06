@@ -43,8 +43,8 @@ public class Transacao {
     public void exibir() {
         System.out.printf("\nDADOS DA TRANSAÇÃO #%d:\n Tipo: %s\n Usuário: %s\n Moeda: %s \n Quantidade moeda: %s %.8f\n Valor total: R$ %.2f \n Valor taxa: R$ %.2f \n Status: %s \n",
                 this.id,
-                this.carteira.getNomeUsuario(),
                 this.tipoOperacao,
+                this.carteira.getNomeUsuario(),
                 this.moeda.getNome(),
                 this.moeda.getSimbolo(),
                 this.quantidadeMoeda,
