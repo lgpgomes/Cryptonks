@@ -14,6 +14,7 @@ public class Usuario {
     private String rua;
     private String numero;
     private Boolean isLogged;
+    private Preferencias preferencias;
 
     //construtor da classe Usuario
     public Usuario(
@@ -42,6 +43,7 @@ public class Usuario {
         this.rua = rua;
         this.numero = numero;
         this.isLogged = isLogged;
+        this.preferencias = new Preferencias("light", "pt-BR", true);
     }
 
     public void editarUsuario (String novoNome) {
