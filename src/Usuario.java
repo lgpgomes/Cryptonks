@@ -1,61 +1,62 @@
-public class Usuario {
+public abstract class Usuario {
     //atributos da classe Usuario
-    private static int contadorId = 0;
-    private int id;
-    private Carteira carteira;
-    private String nome;
-    private String email;
-    private String senha;
-    private String cpf;
-    private String pais;
-    private String estado;
-    private String cidade;
-    private String bairro;
-    private String rua;
-    private String numero;
-    private Boolean isLogged;
-    private Preferencias preferencias;
+    public Carteira carteira;
+    public String email;
+    public String senha;
+    public String pais;
+    public String estado;
+    public String cidade;
+    public String bairro;
+    public String rua;
+    public String numero;
+    public Preferencias preferencias;
+
+    public Usuario() {}
 
     //construtor da classe Usuario
     public Usuario(
-            String nome,
             String email,
             String senha,
-            String cpf,
             String pais,
             String estado,
             String cidade,
             String bairro,
             String rua,
-            String numero,
-            Boolean isLogged
+            String numero
     ) {
-        this.id = contadorId++;
         this.carteira = new Carteira( this);
-        this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.cpf = cpf;
         this.pais = pais;
         this.estado = estado;
         this.cidade = cidade;
         this.bairro = bairro;
         this.rua = rua;
         this.numero = numero;
-        this.isLogged = isLogged;
-        this.preferencias = new Preferencias("light", "pt-BR", true);
-    }
-
-    public void editarUsuario (String novoNome) {
-        System.out.printf("Usuario %s editado. Novo nome: %s. \n",this.nome, novoNome);
-        this.nome = novoNome;
+        this.preferencias = new Preferencias("light", "pt-BR", true); //valor padrao
     }
 
     //getters
-    public String getNome() {
-        return nome;
-    }
     public Carteira getCarteira() {
         return carteira;
     }
+    public String getEmail() {return email;}
+    public String getPais() {return pais;}
+    public String getEstado() {return estado;}
+    public String getCidade() {return cidade;}
+    public String getBairro() {return bairro;}
+    public String getRua() {return rua;}
+    public String getNumero() {return numero;}
+
+    //setters
+    public void setPais(String pais) {this.pais = pais;}
+    public void setEstado(String estado) {this.estado = estado;}
+    public void setCidade(String cidade) {this.cidade = cidade;}
+    public void setBairro(String bairro) {this.bairro = bairro;}
+    public void setRua(String rua) {this.rua = rua;}
+    public void setNumero(String numero) {this.numero = numero;}
+
+    //metodo abstrato assinatura
+    public abstract String getNome();
+    public abstract double getTaxaTransacao();
 }

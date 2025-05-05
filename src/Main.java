@@ -1,45 +1,71 @@
+import java.util.Scanner;
+
 public class Main {
+
+    public static void exibirMenuPrincipal() {
+        System.out.println("Selecione um usuário para prosseguir.");
+        System.out.println("1 - Manoel");
+        System.out.println("2 - Neymar");
+        System.out.println("3 - Gerson");
+        System.out.println("4 - Sair");
+    }
+
+    public static void exibirMenuAcoes() {
+        System.out.println("Agora selecione uma acao.");
+        System.out.println("1 - Transferir saldo");
+        System.out.println("2 - Comprar moeda");
+        System.out.println("3 - Vender moeda");
+        System.out.println("4 - Consultar transacao");
+        System.out.println("5 - Consultar transferencia");
+    }
+
     public static void main(String[] args) {
-        Usuario manoel = new Usuario(
-                "Manoel",
+        Scanner scanner = new Scanner(System.in);
+
+        Usuario manoel = new PessoaFisica(
                 "manoel@gmail.com",
                 "",
-                "123.456.789-10",
                 "Brasil",
                 "Bahia",
                 "Xique-xique",
                 "Centro",
                 "Rua A",
                 "10",
-                true
+                "",
+                "masculino",
+                19,
+                "Manoel",
+                "Souza"
         );
-
-        Usuario neymar = new Usuario(
-                "Neymar",
+        Usuario neymar = new PessoaFisica(
                 "neymar@gmail.com",
                 "",
-                "999.999.999-99",
                 "Brasil",
                 "São Paulo",
                 "Santos",
                 "Centro",
                 "Rua B",
                 "11",
-                true
+                "",
+                "masculino",
+                19,
+                "Neymar",
+                "Souza"
         );
-
-        Usuario gerson = new Usuario(
-                "Gerson",
+        Usuario gerson = new PessoaFisica(
                 "gerson@gmail.com",
                 "",
-                "000.000.000-00",
                 "Brasil",
                 "Rio de Janeiro",
                 "Rio de Janeiro",
                 "Centro",
                 "Rua c",
                 "12",
-                true
+                "",
+                "masculino",
+                19,
+                "Gerson",
+                "Souza"
         );
 
         Moeda btc = new Moeda(
@@ -54,13 +80,66 @@ public class Main {
                 "ETH",
                 10000.00,
                 2000.00
-
         );
+
+        Moeda sol = new Moeda(
+                "Solana",
+                "SOL",
+                10000.00,
+                200.00
+        );
+        neymar.getCarteira().adicionarSaldo(10000.00);
+        int opcao = 0;
+
+
+        do {
+            exibirMenuPrincipal();
+            opcao = scanner.nextInt();
+            Usuario usuarioSelecionado = switch (opcao) {
+                case 1 -> manoel;
+                case 2 -> neymar;
+                case 3 -> gerson;
+                default -> null;
+            };
+
+            System.out.println("Usuario "+usuarioSelecionado.getNome()+" selecionado.");
+
+            exibirMenuAcoes();
+            int acao  = scanner.nextInt();
+
+            switch (acao) {
+                case 1:
+                    System.out.println("Selecione para quem transferir.");
+                    exibirMenuPrincipal();
+                    int usuarioDestinoInt = scanner.nextInt();
+
+                    Usuario usuarioDestino = switch (usuarioDestinoInt) {
+                        case 1 -> manoel;
+                        case 2 -> neymar;
+                        case 3 -> gerson;
+                        default -> null;
+                    };
+
+                    System.out.println("Digite o valor da transferencia.");
+                    double valorTranferencia = scanner.nextDouble();
+                    usuarioSelecionado.getCarteira().transferirSaldo(usuarioDestino, valorTranferencia);
+
+                case 2:
+                    System.out.println("Qual a moeda voce quer comprar");
+
+
+            }
+
+
+        } while (opcao != 4);
+
+
+
+
+
 
         //é adicionado R$ 10.000,00 reais na carteira de neymar
         neymar.getCarteira().adicionarSaldo(10000.00);
-
-        //simulacao de uso do sistema
 
         //neymar transfere R$ 5.000,00 reais para gerson
         neymar.getCarteira().transferirSaldo(gerson, 5000.00);
@@ -82,5 +161,6 @@ public class Main {
 
         //gerson vende etg
         gerson.getCarteira().venderMoeda(eth, 0.5);
+
     }
 }

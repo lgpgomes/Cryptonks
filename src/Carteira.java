@@ -2,23 +2,17 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Carteira {
-    private static int contadorId = 0;
-    private int id;
     private Usuario usuario;
     private List<Investimento> investimentos;
     private List<Transferencia> transferencias;
     private double saldoEmReal;
-    private final double taxaTransacao;
 
     public Carteira( Usuario usuario) {
-        this.id = contadorId++;
         this.usuario = usuario;
         this.investimentos = new ArrayList<>();
         this.transferencias = new ArrayList<>();
         this.saldoEmReal = 0;
-        this.taxaTransacao = 0.02;
     }
-
 
     public void adicionarSaldo (double valor) {
         this.saldoEmReal += valor;
@@ -38,7 +32,7 @@ public class Carteira {
 
     public void comprarMoeda(Moeda moeda, double quantidadeMoeda) {
         System.out.printf("\n[ - ] %s está realizando compra de moeda...\n", this.usuario.getNome());
-        double valorTaxa = (quantidadeMoeda*moeda.cotacaoParaReal) * taxaTransacao;
+        double valorTaxa = (quantidadeMoeda*moeda.cotacaoParaReal) * usuario.getTaxaTransacao();
         double valorLiquido = (quantidadeMoeda*moeda.cotacaoParaReal) ;
 
         Investimento investimento = consultarInvestimentos(moeda);
@@ -69,7 +63,7 @@ public class Carteira {
     public void venderMoeda(Moeda moeda, double quantidadeMoeda) {
         System.out.printf("\n[ - ] %s está realizando venda de moeda...\n", this.usuario.getNome());
 
-        double valorTaxa = (quantidadeMoeda * moeda.cotacaoParaReal) * taxaTransacao;
+        double valorTaxa = (quantidadeMoeda * moeda.cotacaoParaReal) * usuario.getTaxaTransacao();
         double valorLiquido = (quantidadeMoeda * moeda.cotacaoParaReal) - valorTaxa;
 
         Investimento investimento = consultarInvestimentos(moeda);
@@ -159,11 +153,9 @@ public class Carteira {
     public List<Transferencia> getTransferencias () {
         return this.transferencias;
     }
-
     public double getSaldo() {
         return saldoEmReal;
     }
-
     public String getNomeUsuario(){
         return usuario.getNome();
     }

@@ -2,15 +2,12 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Investimento {
-    private static int contadorId = 0;
-    private int id;
     private Moeda moeda;
     private Carteira carteira;
     private double quantidadeMoeda;
     private List<Transacao> transacoes;
 
     public Investimento(Moeda moeda, Carteira carteira) {
-        this.id = contadorId++;
         this.moeda = moeda;
         this.carteira = carteira;
         this.transacoes = new ArrayList<>();
@@ -86,14 +83,14 @@ public class Investimento {
     public Moeda getMoeda () {
         return this.moeda;
     }
-
+    public double getQuantidadeMoeda () {
+        return this.quantidadeMoeda;
+    }
     public List<Transacao> getTransacoes () {
         return this.transacoes;
     }
 
-    public double getQuantidadeMoeda () {
-        return this.quantidadeMoeda;
-    }
+
 
 
 }

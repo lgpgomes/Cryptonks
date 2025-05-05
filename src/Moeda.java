@@ -16,16 +16,20 @@ public class Moeda {
 
 
     //getters
-    public int getId () {
-        return this.id;
-    }
-
+    public int getId () {return this.id;}
     public String getNome () {
         return this.nome;
     }
-
     public String getSimbolo () {
         return this.simbolo;
     }
+    public double getTotalDisponivel () {return this.totalDisponivel;}
+    public double getCotacaoParaReal () {return this.cotacaoParaReal;}
+
+    //setters
+    public void setNome(String nome) {this.nome = nome;}
+    public void setSimbolo(String simbolo) {this.simbolo = simbolo;}
+    public void setTotalDisponivel(double totalDisponivel) {this.totalDisponivel = totalDisponivel;}
+    public void setCotacaoParaReal(double cotacaoParaReal) {this.cotacaoParaReal = cotacaoParaReal;}
 
 }
