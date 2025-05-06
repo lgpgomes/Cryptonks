@@ -2,16 +2,17 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    public static void exibirUsuarios(Usuario manoel, Usuario neymar, Usuario gerson) {
+    public static void exibirUsuarios(Usuario manoel, Usuario neymar, Usuario gerson, Usuario fiap) {
         System.out.printf("1 - MANOEL (Saldo R$ %.2f)\n", manoel.getCarteira().getSaldo());
         System.out.printf("2 - NEYMAR (Saldo R$ %.2f)\n", neymar.getCarteira().getSaldo());
         System.out.printf("3 - GERSON (Saldo R$ %.2f)\n", gerson.getCarteira().getSaldo());
+        System.out.printf("4 - FIAP (Saldo R$ %.2f)\n", fiap.getCarteira().getSaldo());
     }
 
-    public static void exibirMenuPrincipal(Usuario manoel, Usuario neymar, Usuario gerson) {
+    public static void exibirMenuPrincipal(Usuario manoel, Usuario neymar, Usuario gerson, Usuario fiap) {
         System.out.println("\n[*] BEM VINDO A CRYPTONKS, SELECIONE UM USUARIO PARA PROSEGUIR");
-        exibirUsuarios(manoel, neymar, gerson);
-        System.out.println("4 - SAIR");
+        exibirUsuarios(manoel, neymar, gerson, fiap);
+        System.out.println("5 - SAIR");
     }
 
     public static void exibirMenuAcoes(String nomeUsuarioSelecionado) {
@@ -80,6 +81,21 @@ public class Main {
                     "Souza"
             );
 
+            Usuario fiap = new PessoaJuridica(
+                    "fiap@fiap.com",
+                    "",
+                    "Brasil",
+                    "Sao Paulo",
+                    "Sao Paulo",
+                    "Cerqueira Cesar",
+                    "Avenida Paulista",
+                    "1106",
+                    "",
+                    "Educacao",
+                    "FIAP"
+            );
+
+
             Moeda btc = new Moeda(
                     "Bitcoin",
                     "BTC",
@@ -108,14 +124,15 @@ public class Main {
             boolean running = true;
 
             while (running) {
-                exibirMenuPrincipal(manoel, neymar, gerson);
+                exibirMenuPrincipal(manoel, neymar, gerson, fiap);
                 int usuarioOpcao = scanner.nextInt();
 
                 Usuario usuarioSelecionado = switch (usuarioOpcao) {
                     case 1 -> manoel;
                     case 2 -> neymar;
                     case 3 -> gerson;
-                    case 4 -> {
+                    case 4 -> fiap;
+                    case 5 -> {
                         System.out.println("Encerrando programa.");
                         running = false;
                         yield null;
@@ -134,12 +151,11 @@ public class Main {
 
                 switch (acaoOpcao) {
                     case 1 -> {
-
                         Usuario usuarioDestino = null;
 
                         while (usuarioDestino == null) {
                             System.out.println("[*] SELECIONE PARA QUEM TRANSFERIR SALDO.");
-                            exibirUsuarios(manoel, neymar, gerson);
+                            exibirUsuarios(manoel, neymar, gerson, fiap);
 
                             int usuarioDestinoOpcao = scanner.nextInt();
 
@@ -147,6 +163,7 @@ public class Main {
                                 case 1 -> manoel;
                                 case 2 -> neymar;
                                 case 3 -> gerson;
+                                case 4 -> fiap;
                                 default -> {
                                     System.out.println("Opcao invalida.");
                                     yield null;
