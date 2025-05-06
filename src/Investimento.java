@@ -20,7 +20,8 @@ public class Investimento {
                 this.quantidadeMoeda += quantidadeMoeda;
                 novaTransacao.setStatus(Status.CONCLUIDA);
 
-                System.out.printf("\nCOMPRA REALIZADA\n Usuario: %s\n Moeda: %s\n Quantidade: %s %.8f\n Valor total: R$ %.2f\n Valor líquido: R$ %.2f\n Valor taxa: R$ %.2f\n Saldo restante: R$ %.2f\n",
+                System.out.printf("\n[Resumo] COMPRA REALIZADA\n Id: %d\n Usuario: %s\n Moeda: %s\n Quantidade: %s %.8f\n Valor total: R$ %.2f\n Valor líquido: R$ %.2f\n Valor taxa: R$ %.2f\n Saldo restante: R$ %.2f\n",
+                        novaTransacao.getId(),
                         this.carteira.getNomeUsuario(),
                         moeda.getNome(),
                         moeda.getSimbolo(),
@@ -35,7 +36,8 @@ public class Investimento {
             } else {
                 novaTransacao.setStatus(Status.ERRO);
 
-                System.out.printf("\nCOMPRA NÃO REALIZADA\n Usuario: %s\n Motivo: saldo insuficiente\n Moeda: %s\n Quantidade: %s %.8f\n Valor total: R$ %.2f\n Valor líquido: R$ %.2f\n Valor taxa: R$ %.2f\n Saldo restante: R$ %.2f\n",
+                System.out.printf("\n[Resumo] COMPRA NÃO REALIZADA\n Id: %d\n Usuario: %s\n Motivo: saldo insuficiente\n Moeda: %s\n Quantidade: %s %.8f\n Valor total: R$ %.2f\n Valor líquido: R$ %.2f\n Valor taxa: R$ %.2f\n Saldo restante: R$ %.2f\n",
+                        novaTransacao.getId(),
                         this.carteira.getNomeUsuario(),
                         moeda.getNome(),
                         moeda.getSimbolo(),
@@ -53,7 +55,8 @@ public class Investimento {
                 this.quantidadeMoeda -= quantidadeMoeda;
                 novaTransacao.setStatus(Status.CONCLUIDA);
 
-                System.out.printf("\nVENDA REALIZADA\n Usuario: %s\n Moeda: %s\n Quantidade: %s %.8f\n Valor total: R$ %.2f\n Valor a receber: R$ %.2f\n Valor taxa: R$ %.2f\n Saldo: R$ %.2f\n",
+                System.out.printf("\n[Resumo] VENDA REALIZADA\n Id: %d\n Usuario: %s\n Moeda: %s\n Quantidade: %s %.8f\n Valor total: R$ %.2f\n Valor a receber: R$ %.2f\n Valor taxa: R$ %.2f\n Saldo: R$ %.2f\n",
+                        novaTransacao.getId(),
                         this.carteira.getNomeUsuario(),
                         moeda.getNome(),
                         moeda.getSimbolo(),
@@ -66,7 +69,8 @@ public class Investimento {
             }
             else {
                 novaTransacao.setStatus(Status.ERRO);
-                System.out.printf("\nVENDA NÃO REALIZADA\n Usuario: %s\n Motivo: moedas insuficientes\n Moeda: %s\n Quantidade: %s %.8f\n Quantidade possuída: %s %.8f\n Saldo: R$ %.2f\n",
+                System.out.printf("\n[Resumo] VENDA NÃO REALIZADA\n Id: %d\n Usuario: %s\n Motivo: moedas insuficientes\n Moeda: %s\n Quantidade: %s %.8f\n Quantidade possuída: %s %.8f\n Saldo: R$ %.2f\n",
+                        novaTransacao.getId(),
                         this.carteira.getNomeUsuario(),
                         moeda.getNome(),
                         moeda.getSimbolo(),

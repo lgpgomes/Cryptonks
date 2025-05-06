@@ -24,7 +24,8 @@ public class Transferencia {
             this.carteiraDestinatario.adicionarSaldo(valorTransferencia);
             this.status = Status.CONCLUIDA;
 
-            System.out.printf("\nTRANSFERENCIA REALIZADA\n Usuário: %s\n Destino: %s\n Valor: R$ %.2f\n Saldo restante: R$ %.2f\n",
+            System.out.printf("\n[Resumo] TRANSFERENCIA REALIZADA\n Id: %d\n Usuário: %s\n Destino: %s\n Valor: R$ %.2f\n Saldo restante: R$ %.2f\n",
+                    this.id,
                     this.carteiraRemetente.getNomeUsuario(),
                     this.carteiraDestinatario.getNomeUsuario(),
                     valorTransferencia,
@@ -33,7 +34,8 @@ public class Transferencia {
         }
         else {
             this.status = Status.ERRO;
-            System.out.printf("\nTRANSFERENCIA NÃO REALIZADA\n Motivo: saldo insuficiente\n Usuário: %s\n Destino: %s\n Valor: R$ %.2f\n Saldo restante: R$ %.2f\n",
+            System.out.printf("\n[Resumo] TRANSFERENCIA NÃO REALIZADA\n Id: %d\n Motivo: saldo insuficiente\n Usuário: %s\n Destino: %s\n Valor: R$ %.2f\n Saldo restante: R$ %.2f\n",
+                    this.id,
                     this.carteiraRemetente.getNomeUsuario(),
                     this.carteiraDestinatario.getNomeUsuario(),
                     valorTransferencia,
@@ -43,7 +45,7 @@ public class Transferencia {
     }
 
     public void exibir() {
-        System.out.printf("\nDADOS DA TRANSFERENCIA #%d:\n Usuário: %s\n Destino: %s\n Valor: R$ %.2f\n Status: %s",
+        System.out.printf("\n[Resumo] DADOS DA TRANSFERENCIA #%d:\n Usuário: %s\n Destino: %s\n Valor: R$ %.2f\n Status: %s\n",
                 this.id,
                 this.carteiraRemetente.getNomeUsuario(),
                 this.carteiraDestinatario.getNomeUsuario(),
